@@ -1,15 +1,22 @@
+
 {
   "name": "studiospace-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "StudioSpace backend API",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "node --test"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "studiospace",
+    "express",
+    "mongodb"
+  ],
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
