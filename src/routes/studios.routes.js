@@ -6,7 +6,7 @@ import { verifyJWT } from "../middleware/verifyJWT.js";
 const r = Router();
 const oid = (id) => (ObjectId.isValid(id) ? new ObjectId(id) : null);
 
-// Public: list with search / category / sort / limit
+
 r.get("/", async (req, res) => {
   const { search, category, sort, limit, minPrice, maxPrice } = req.query;
   const q = {};
@@ -23,11 +23,10 @@ r.get("/", async (req, res) => {
     priceAsc: { hourlyRate: 1 }, priceDesc: { hourlyRate: -1 },
   };
   let cursor = col("studios").find(q).sort(sorts[sort] || { createdAt: -1 });
-  if (limit) cursor = cursor.limit(+limit);        // Home: ?limit=6&sort=rating
+  if (limit) cursor = cursor.limit(+limit);      
   res.json(await cursor.toArray());
 });
 
-// Private: my listings
 r.get("/mine/list", verifyJWT, async (req, res) =>
   res.json(await col("studios").find({ ownerEmail: req.user.email }).toArray()));
 
