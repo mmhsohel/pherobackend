@@ -3,8 +3,12 @@ import { col } from "../config/db.js";
 import { verifyJWT } from "../middleware/verifyJWT.js";
 const r = Router();
 
+
+
 r.get("/", verifyJWT, async (req, res) =>
   res.json(await col("wishlist").find({ userEmail: req.user.email }).toArray()));
+
+
 
 r.post("/toggle", verifyJWT, async (req, res) => {
   const { studioId } = req.body;
@@ -15,3 +19,4 @@ r.post("/toggle", verifyJWT, async (req, res) => {
   res.json({ saved: true });
 });
 export default r;
+
