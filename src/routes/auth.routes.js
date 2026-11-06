@@ -10,7 +10,7 @@ const cookieOpts = {
   maxAge: 7 * 24 * 3600 * 1000,
 };
 
-// BetterAuth cookie value looks like "<token>.<signature>"
+
 r.post("/jwt", async (req, res) => {
   const raw = req.cookies?.["better-auth.session_token"] || req.cookies?.["__Secure-better-auth.session_token"];
   if (!raw) return res.status(401).json({ message: "No active session" });
